@@ -28,7 +28,7 @@ const laboratories = [
   {
     name: "Cytolab",
     address: "Rua Viriato Corrêa",
-    status: "Inativo",
+    status: "",
   },
   {
     name: "Laboratório Médico Vital Brasil",
@@ -38,7 +38,7 @@ const laboratories = [
   {
     name: "Sérgio Franco",
     address: "Rua do Cravo",
-    status: "Ativo",
+    status: "",
   },
   {
     name: "Salomão Zoppi Diagnósticos",
@@ -48,7 +48,7 @@ const laboratories = [
   {
     name: "Laboratório Oswaldo Cruz",
     address: "Rua Quintal do Sol",
-    status: "Ativo",
+    status: "",
   },
   {
     name: "Lavoisier Laboratório e Imagem",

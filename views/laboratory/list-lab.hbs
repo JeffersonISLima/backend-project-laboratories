@@ -11,30 +11,26 @@
 <body>
 
   <h2>Laboratórios ativos</h2>
-  <ul>
-    {{#each laboratories}}
+
+  {{#each laboratories}}
     {{#if this.status}}
-    <a href="">{{@index}}: {{this.name}}</li></a><li>
-    <li>{{this.address}}</li>
-    <li>{{this.status}}</li>    
+    <p><a href="/laboratories/{{this._id}}">{{this.name}}</a></p>    
     {{/if}}
     {{else}}
     <p>No laboratories yet!</p>
-    {{/each}}
-  </ul>
+  {{/each}}
 
- <h2>Laboratórios inativos</h2>
-  <ul>
+
+  <h2>Laboratórios inativos</h2>
+ 
     {{#each laboratories}}
-    {{#unless this.status}}
-    <li>{{@index}}: {{this.name}}</li>
-    <li>{{this.address}}</li>
-    <li>{{this.status}}</li>
-    {{/unless}}
-    {{else}}
-    <p>No laboratories yet!</p>
+      {{#unless this.status}}
+      <p><a href="/laboratories/{{this._id}}">{{this.name}}</a></p> 
+      {{/unless}}
+      {{else}}
+      <p>No laboratories yet!</p>
     {{/each}}
-  </ul>
+ 
 
 </body>
 
