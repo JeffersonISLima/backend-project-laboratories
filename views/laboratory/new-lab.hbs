@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1>NEW LABORATÓRIO</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<form action="/laboratories/new-lab" method="post">
+  <label for="">Nome do laboratório:</label>
+  <input type="text" name="name">
 
-<body>
-  NEW LABORATÓRIO
-</body>
+  <label for="">Endereço:</label>
+  <input type="text" name="address">
 
-</html>
+  <select name="status" class="browser-default" id='hours' required>
+    <option value="" disabled selected>Escolha seu horário</option>
+    <option value="Ativo">Ativo</option>
+    <option value="">Inativo</option>
+  </select>
+
+  <button type="submit">Salvar</button>
+</form>
