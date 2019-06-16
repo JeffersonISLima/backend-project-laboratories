@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h2>Laboratórios ativos</h2>
+  <ul>
+    {{#each laboratories}}
+    {{#if this.status}}
+    <a href="">{{@index}}: {{this.name}}</li></a><li>
+    <li>{{this.address}}</li>
+    <li>{{this.status}}</li>    
+    {{/if}}
+    {{else}}
+    <p>No laboratories yet!</p>
+    {{/each}}
+  </ul>
+
+ <h2>Laboratórios inativos</h2>
+  <ul>
+    {{#each laboratories}}
+    {{#unless this.status}}
+    <li>{{@index}}: {{this.name}}</li>
+    <li>{{this.address}}</li>
+    <li>{{this.status}}</li>
+    {{/unless}}
+    {{else}}
+    <p>No laboratories yet!</p>
+    {{/each}}
+  </ul>
+
+</body>
+
+</html>
