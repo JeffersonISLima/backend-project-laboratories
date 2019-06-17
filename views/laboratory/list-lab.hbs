@@ -1,8 +1,8 @@
-<h2>Laboratórios ativos</h2>
 {{#if msg}}
   <h1>{{msg}}</h1>
 {{/if}}
 
+<h2>Laboratórios ativos</h2>
 {{#each laboratories}}
   {{#if this.status}}
     <p><a href="/laboratories/details/{{this._id}}">{{this.name}}</a></p>    

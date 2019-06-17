@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1>Cadastrar exame</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<form action="/exams/new-exam/{{laboratory._id}}" method="post">
+  <label for="">Nome do exame:</label>
+  <input placeholder="{{laboratory.name}}" type="text" name="name" required>
 
-<body>
-  NOVO EXAME
-</body>
+  
+  <select name="type" class="" required>
+    <option value="" disabled selected>Escolha o tipo de exame</option>
+    <option value="Analise">Analise Clínica</option>
+    <option value="Imagem">Imagem</option>
+  </select>
 
-</html>
+  <select name="status" class="" required>
+    <option value="" disabled selected>Escolha o status</option>
+    <option value="Ativo">Ativo</option>
+    <option value="">Inativo</option>
+  </select>
+
+  <button type="submit">Salvar</button>
+</form>
+

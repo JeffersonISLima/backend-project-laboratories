@@ -19,7 +19,7 @@ router.post('/new-lab', (req, res, next) => {
     })
     .then((register) => {
       if (register !== null) {
-        res.redirect('/laboratories/list-lab/?msg=Este laboratório e o endereço já existem.');
+        res.redirect(`/laboratories/list-lab/?msg=Já existe um laboratório neste endereço, o cadastro do laboratório ${register.name} não foi realizado.`);
         return;
       } else {
         const newLaboratory = new Laboratory({
@@ -29,7 +29,7 @@ router.post('/new-lab', (req, res, next) => {
         });
         newLaboratory.save()
           .then((laboratory) => {
-            res.redirect('/laboratories/list-lab');
+            res.redirect(`/laboratories/list-lab/?msg=Laboratório ${laboratory.name} cadastrado com sucesso!`);
           })
           .catch((error) => {
             console.log(error);
@@ -67,19 +67,18 @@ router.get('/edit-lab/:id', (req, res, next) => {
   })
   .catch(error => {
     console.log("Erro ao recuperar detalhes de um laboratório para edição: ", error);
-  })
-})
+  });
+});
 
 router.post('/edit-lab/:id', (req, res, next) => {
   Laboratory.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(lab => {
-      res.redirect('/?msg=Laboratório atualizado com sucesso!');
+      res.redirect(`/?msg=Laboratório ${lab.name} atualizado com sucesso!`);
     })
     .catch(error => {
       throw new Error(error);
-    })
-})
-
+    });
+});
 
 /* Details a laboratory  */
 router.get('/details/:id', (req, res, next) => {
@@ -93,18 +92,18 @@ router.get('/details/:id', (req, res, next) => {
     })
     .catch(error => {
       console.log("Erro ao recuperar detalhes de um laboratório: ", error);
-    })
+    });
 });
 
 /* Delete one laboratory */
 router.get('/delete/:id', (req, res, next) => {
   Laboratory.findByIdAndDelete(req.params.id)
-    .then(() => {
-      res.redirect('/laboratories/list-lab/?msg=Laboratório DELETADO com sucesso!');
+    .then((lab) => {
+      res.redirect(`/laboratories/list-lab/?msg=Laboratório ${lab.name} deletado com sucesso!`);
     })
     .catch(error => {
       throw new Error(error); 
-    })
-})
+    });
+});
 
 module.exports = router;
