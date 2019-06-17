@@ -50,7 +50,17 @@ router.get('/list-exams', (req, res, next) => {
     });
 });
 
-
-
+/* Details a exam */
+router.get('/details/:id', (req, res, next) => {
+  Exam.findOne({
+    '_id': req.params.id
+  })
+  .then( (theExam) => {
+    res.render('../views/exam/exam-details', { exam: theExam });
+  })
+  .catch( (error) => {
+    throw new Error(error);
+  });
+});
 
 module.exports = router;
