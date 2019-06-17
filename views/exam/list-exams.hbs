@@ -1,5 +1,21 @@
-<h1>Lista de exames cadastrados</h1>
+{{#if msg}}
+  <h1>{{msg}}</h1>
+{{/if }}
 
+<h2>Exames ativos</h2>
 {{# each exams}}
-  <p><a href="/exams/details/{{this.id}}">{{this.name}}</a></p>
+  {{#if this.status}}
+    <p><a href="/exams/details/{{this.id}}">{{this.name}}</a></p>
+  {{/if}}
+  {{else}}
+     <p>No exams yet!</p>
+{{/each}}
+
+<h2>Exames inativos</h2>
+{{#each exams}}
+  {{#unless this.status}}
+    <p><a href="/exams/details/{{this.id}}">{{this.name}}</a></p>
+  {{/unless}}
+  {{else}}
+   <p>No exams yet!</p>
 {{/each}}
