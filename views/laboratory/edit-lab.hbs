@@ -2,10 +2,10 @@
 
 <form action="/laboratories/edit-lab/{{laboratory._id}}" method="post">
   <label for="">Nome do laboratório:</label>
-  <input placeholder="{{laboratory.name}}" type="text" name="name">
+  <input placeholder="{{laboratory.name}}" type="text" name="name" required>
 
   <label for="">Endereço:</label>
-  <input placeholder="{{laboratory.address}}" type="text" name="address">
+  <input placeholder="{{laboratory.address}}" type="text" name="address" required>
 
   <select name="status" class="" required>
     <option value="" disabled selected>Escolha o status</option>

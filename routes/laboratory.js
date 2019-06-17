@@ -76,7 +76,7 @@ router.post('/edit-lab/:id', (req, res, next) => {
       res.redirect('/?msg=Laboratório atualizado com sucesso!');
     })
     .catch(error => {
-      throw new Error(err);
+      throw new Error(error);
     })
 })
 
@@ -96,6 +96,15 @@ router.get('/details/:id', (req, res, next) => {
     })
 });
 
-
+/* Delete one laboratory */
+router.get('/delete/:id', (req, res, next) => {
+  Laboratory.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect('/laboratories/list-lab/?msg=Laboratório DELETADO com sucesso!');
+    })
+    .catch(error => {
+      throw new Error(error); 
+    })
+})
 
 module.exports = router;
