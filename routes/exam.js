@@ -4,7 +4,7 @@ const Exam = require('../models/Exam.js');
 
 /* Exam home */
 router.get('/', (req, res, next) => {
-  res.render('../views/exam/exams');
+  res.render('../views/exam/exams', { msg: req.query.msg });
 })
 
 /* Register a new exam */
@@ -85,5 +85,16 @@ router.post('/edit-exam/:id', (req, res, next) => {
       throw new Error(error);
     });
 });
+
+/* Exam delete */
+router.get('/delete/:id',(req, res, next) => {
+  Exam.findByIdAndDelete(req.params.id)
+    .then( (exam) => {
+      res.redirect(`/exams/?msg=O exame ${ exam.name } foi deletado com sucesso!`);
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+}); 
 
 module.exports = router;
