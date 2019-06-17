@@ -85,7 +85,7 @@ router.get('/details/:id', (req, res, next) => {
   Laboratory.findOne({
       '_id': req.params.id
     })
-    .then(theLab => {
+    .then( (theLab) => {
       res.render('../views/laboratory/laboratory-details', {
         laboratory: theLab
       });

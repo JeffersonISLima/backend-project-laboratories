@@ -17,7 +17,7 @@ router.post('/new-exam', (req, res, next) => {
   Exam.findOne({ name })
     .then( nameExam => {
       if( nameExam !== null){
-        res.redirect(`/exams/list-exam/?msg=O exame ${ nameExam.name } já existe.`);
+        res.redirect(`/exams/list-exams/?msg=O exame ${ nameExam.name } já existe.`);
         return;
       } else {
         const newExam = new Exam({
@@ -27,7 +27,7 @@ router.post('/new-exam', (req, res, next) => {
         });
         newExam.save()
           .then((nameExam) => {
-            res.redirect(`/exams/list-exam/?msg=Exame ${ nameExam.name } cadastrado com sucesso!`);
+            res.redirect(`/exams/list-exams/?msg=Exame ${ nameExam.name } cadastrado com sucesso!`);
           })
           .catch((error) => {
             throw new Error(error);
@@ -38,6 +38,18 @@ router.post('/new-exam', (req, res, next) => {
       throw new Error(error);
     });
 });
+
+/* List all exams */
+router.get('/list-exams', (req, res, next) => {
+  Exam.find()
+    .then((allExams) => {
+      res.render('../views/exam/list-exams', { exams: allExams } );
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+});
+
 
 
 
