@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1>Editar LABORATÓRIO</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<form action="/laboratories/edit-lab/{{laboratory._id}}" method="post">
+  <label for="">Nome do laboratório:</label>
+  <input placeholder="{{laboratory.name}}" type="text" name="name">
 
-<body>
-  EDIT LABORATÓRIO
-</body>
+  <label for="">Endereço:</label>
+  <input placeholder="{{laboratory.address}}" type="text" name="address">
 
-</html>
+  <select name="status" class="" required>
+    <option value="" disabled selected>Escolha o status</option>
+    <option value="Ativo">Ativo</option>
+    <option value="">Inativo</option>
+  </select>
+
+  <button type="submit">Salvar</button>
+</form>

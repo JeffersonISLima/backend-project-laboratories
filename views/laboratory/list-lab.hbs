@@ -1,22 +1,20 @@
 <h2>Laboratórios ativos</h2>
-
 {{#if msg}}
-    <h1>{{msg}}</h1>
+  <h1>{{msg}}</h1>
 {{/if}}
 
 {{#each laboratories}}
   {{#if this.status}}
-    <p><a href="/laboratories/{{this._id}}">{{this.name}}</a></p>
+    <p><a href="/laboratories/details/{{this._id}}">{{this.name}}</a></p>    
   {{/if}}
   {{else}}
     <p>No laboratories yet!</p>
 {{/each}}
 
 <h2>Laboratórios inativos</h2>
-
 {{#each laboratories}}
   {{#unless this.status}}
-    <p><a href="/laboratories/{{this._id}}">{{this.name}}</a></p>
+    <p><a href="/laboratories/details/{{this._id}}">{{this.name}}</a></p>
   {{/unless}}
   {{else}}
     <p>No laboratories yet!</p>
