@@ -1,4 +1,4 @@
-<h1>NEW LABORATÓRIO</h1>
+<h1>Cadastrar laboratório</h1>
 
 <form action="/laboratories/new-lab" method="post">
   <label for="">Nome do laboratório:</label>
@@ -12,6 +12,17 @@
     <option value="Ativo">Ativo</option>
     <option value="">Inativo</option>
   </select>
+
+  <p>Vincular os exames ativos cadastrados no banco com o laboratório: </p>
+  <div>
+    {{#each exams}}
+      {{#if this.status}}
+        <label for="exams">{{this.name}}</label>
+        <input value="{{this.name}}" type="checkbox" id="exams" name="exams" checked>
+        <br>
+      {{/if}}
+    {{/each}}  
+  </div>
 
   <button type="submit">Salvar</button>
 </form>

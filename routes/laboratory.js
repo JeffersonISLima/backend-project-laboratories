@@ -1,17 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const Laboratory = require('../models/Laboratory.js');
+const Exam = require('../models/Exam.js');
 
 /* Register a new laboratory */
 router.get('/new-lab', (req, res, next) => {
-  res.render('../views/laboratory/new-lab');
+  Exam.find()
+  .then((exams) => {
+    res.render('../views/laboratory/new-lab', { exams: exams });
+  })
+  .catch((error) => {
+    throw new Error(error);
+  });
 });
 
 router.post('/new-lab', (req, res, next) => {
   const {
     name,
     address,
-    status
+    status,
+    exams
   } = req.body;
 
   Laboratory.findOne({
@@ -25,7 +33,8 @@ router.post('/new-lab', (req, res, next) => {
         const newLaboratory = new Laboratory({
           name,
           address,
-          status
+          status,
+          exams
         });
         newLaboratory.save()
           .then((laboratory) => {

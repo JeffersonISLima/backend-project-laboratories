@@ -13,5 +13,19 @@
     <option value="">Inativo</option>
   </select>
 
+  <p>Desvincular exames do laboratório: </p>
+
+  <div>
+    {{#each laboratory.exams}}   
+      <ul>
+        <li>
+        <label for="exams"> {{@index}} - {{this}}</label>
+        <input value="{{this}}" type="checkbox" id="exams" name="exams" checked>
+        </li>
+      </ul>
+    
+    {{/each}}  
+  </div>
+
   <button type="submit">Salvar</button>
 </form>
