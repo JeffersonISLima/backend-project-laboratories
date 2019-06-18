@@ -7,18 +7,24 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Manutenção de laboratórios e exames</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
-  <link rel="stylesheet" href="/public/stylesheets/reset.css">
+  <link rel="stylesheet" href="/stylesheets/reset.css">
 </head>
 
 <body>
   <header>
     <h1>Manutenção de laboratórios e exames</h1>
-
-    <nav>
-      <ul>
-        <a href="/"><li>LABORATÓRIOS</li></a>
-        <a href="/exams"><li>EXAMES</li></a>
+    <nav>    
+      <input id="menu-hamburguer" type="checkbox">
+      <ul class="navbar">
+        <li><a href="/">LABORATÓRIOS</a></li>
+        <li><a href="/exams">EXAMES</a></li>
       </ul>
+
+      <label for="menu-hamburguer">
+        <div class="menu">
+          <span class="hamburguer"></span>
+        </div>
+      </label>    
     </nav>
   </header>
 
