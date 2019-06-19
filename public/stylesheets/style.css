@@ -1,3 +1,18 @@
+/* BORDA AUXILIAR - APAGAR AO FINAL */
+.border {
+  border: 2px solid red;
+}
+
+/* Navbar title */
+.container-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+  color: white;
+  height: 70px;
+}
+
 /* Hamburger Menu */
 .menu {
   background-color: purple;
@@ -10,6 +25,7 @@
   cursor: pointer;
   box-shadow: 0 0 0 0 purple, 0 0 0 0 #fff;
   transition: box-shadow 1s ease-in-out; 
+  z-index: 1;
 }
 
 .menu:hover {
@@ -46,11 +62,11 @@
 }
 
 #menu-hamburguer {
-  display: none;
+  display: none;  
 }
 
 #menu-hamburguer:checked ~ label .menu {
-  box-shadow: 0 0 0 130vw purple, 0 0 0 130vh #fff;
+  box-shadow: 0 0 0 130vw rgb(24, 1, 43), 0 0 0 130vh #fff;    
 }
 
 #menu-hamburguer:checked ~ label .hamburguer {
@@ -93,21 +109,78 @@
   text-decoration: none; 
 }
 
-
 /* Cards */
+img {
+  max-width: 100%;
+}
+
 .container {
   display: flex;
   justify-content: space-evenly;
-  border: 2px solid red;
+  margin-top: 60px;  
 }
 
 .card {
-  height: 400px;
-  width: 30%;
-  border: 2px solid purple;
+  width: 400px;
+  height: 60vh;
+  border: 3px solid purple;
   border-radius: 12px; 
-  background: #fff;
-  box-shadow: 1px 1px 7px rgba(71, 1, 66, 0.65);  
-  padding: 2em;  
-  max-width: 20em;    
+  background: #333;
+  box-shadow: 1px 1px 100px rgba(71, 1, 66, 0.65);  
+  padding: 2rem;  
+  max-width: 20em;  
+  overflow: hidden; 
+  position: relative;
 }
+
+.card__image-container {
+  margin: -2rem -2rem 1rem -2rem;
+}
+
+.card__line {
+  opacity: 0;
+  animation: LineFadeIn .8s .8s forwards ease-in;
+}
+
+.card__image {
+  opacity: 0;
+  animation: ImageFadeIn .8s 1.4s forwards;
+  height: 260px;
+}
+
+.card__title {  
+  color: white;
+  margin-top: 0;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.card__content {
+  margin-top: -1rem;
+    opacity: 0;
+    animation: ContentFadeIn .8s 1.6s forwards;
+}
+
+.card__svg {
+  position: absolute;
+  left: 0;
+  top: 115px;
+}
+
+@keyframes LineFadeIn {
+  0% { opacity: 0; d: path("M 0 300 Q 0 300 0 300 Q 0 300 0 300 C 0 300 0 300 0 300 Q 0 300 0 300 "); stroke: #fff; }
+  50% { opacity: 1; d: path("M 0 300 Q 50 300 100 300 Q 250 300 350 300 C 350 300 500 300 650 300 Q 750 300 800 300"); stroke: #888BFF; }
+  100% { opacity: 1; d: path("M -2 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 802 400"); stroke: #545581; }
+}
+
+@keyframes ContentFadeIn {
+  0% { transform: translateY(-1rem); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes ImageFadeIn {
+  0% { transform: translate(-.5rem, -.5rem) scale(1.05); opacity: 0; filter: blur(2px); }
+  50% { opacity: 1; filter: blur(2px); }
+  100% { transform: translateY(0) scale(1.0); opacity: 1; filter: blur(0); }
+}
+
