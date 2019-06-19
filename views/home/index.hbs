@@ -1,38 +1,47 @@
 {{#if msg}}
-  <h2>{{msg}}</h2>
+  <h1 class="msg">{{msg}}</h1>
 {{/if}}
 
-<div class="container">   
+<div class="container">
+  
+  {{!-- First card --}}
   <div class="card">
-    <a href="/laboratories/list-lab"> 
+    <a href="/laboratories/list-lab">
       <div class="card__image-container">
-        <img class="card__image" src="../../images/laboratory.jpeg" alt="Imagem de uma rotina de exames em um laboratório">
-      </div>  
+        <img class="card__image" src="../../images/laboratory.jpeg"
+          alt="Imagem de uma rotina de exames em um laboratório">
+      </div>
       <svg class="card__svg" viewBox="0 0 800 500">
-        <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-        <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-      </svg>  
+        <path
+          d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500"
+          stroke="transparent" fill="#333" />
+        <path class="card__line"
+          d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink"
+          stroke-width="3" fill="transparent" />
+      </svg>
       <div class="card__content">
-        <h2 class="card__title">Listar laboratórios ativos e inativos &#x2771;</h2>
+        <h2 class="card__title">Listar laboratórios ativos e inativos <div class="card__title-arrow">&#x2771;</div></h2>
+      </div>
+    </a>
+  </div>
+
+  {{!-- Second card --}}
+  <div class="card">
+    <a href="/laboratories/new-lab">
+      <div class="card__image-container">
+        <img class="card__image" src="../../images/exam.jpg" alt="Imagem de doutores avaliando um exame de imagem ">
+      </div>
+      <svg class="card__svg" viewBox="0 0 800 500">
+        <path
+          d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500"
+          stroke="transparent" fill="#333" />
+        <path class="card__line"
+          d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink"
+          stroke-width="3" fill="transparent" />
+      </svg>
+      <div class="card__content">
+        <h2 class="card__title">Cadastrar laboratório <div class="card__title-arrow">&#x2771;</div></h2>
+      </div>
     </a>
   </div>
 </div>
-
-<div class="card">
-    <a href="/laboratories/new-lab"> 
-      <div class="card__image-container">
-        <img class="card__image" src="../../images/exam.jpg" alt="Imagem de uma rotina de exames em um laboratório">
-      </div>  
-      <svg class="card__svg" viewBox="0 0 800 500">
-        <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
-        <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
-      </svg>  
-      <div class="card__content">
-        <h2 class="card__title">Cadastrar laboratório &#x2771;</h2>
-    </a>
-  </div>
-
-
-
-
-
