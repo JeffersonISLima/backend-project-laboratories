@@ -6,22 +6,36 @@
   <h1 class="message-failure">{{msgFailure}}</h1>
 {{/if}}
 
-<h1>Lista de laboratórios cadastrados</h1>
+<h1 class="list-layout-center-title">Lista de laboratórios cadastrados</h1>
 
-<h2>Laboratórios ativos</h2>
-{{#each laboratories}}
-  {{#if this.status}}
-    <p><a href="/laboratories/details/{{this._id}}">{{this.name}}</a></p>    
-  {{/if}}
-  {{else}}
-    <p>No laboratories yet!</p>
-{{/each}}
+<section class="row">
+  <div class="column-aux"></div>
 
-<h2>Laboratórios inativos</h2>
-{{#each laboratories}}
-  {{#unless this.status}}
-    <p><a href="/laboratories/details/{{this._id}}">{{this.name}}</a></p>
-  {{/unless}}
-  {{else}}
-    <p>No laboratories yet!</p>
-{{/each}}
+  <div class="column" name="laboratories-actives">
+    <h2 class="list-layout-center-title">Laboratórios ativos</h2>
+    <br>
+    {{#each laboratories}}
+      {{#if this.status}}
+        <a href="/laboratories/details/{{this.id}}"><p class="list-layout">{{this.name}}</p></a>
+      {{/if}}
+      {{else}}
+        <p>No laboratories yet!</p>
+    {{/each}}
+  </div>
+
+  <div class="column" name="laboratories-inactive">
+    <h2 class="list-layout-center-title">Laboratórios inativos</h2>
+    <br>
+    {{#each laboratories}}
+      {{#unless this.status}}
+        <a href="/laboratories/details/{{this._id}}">
+          <p class="list-layout">{{this.name}}</p>
+        </a>
+      {{/unless}}
+      {{else}}
+        <p>No laboratories yet!</p>
+    {{/each}}
+  </div>
+
+  <div class="column-aux" name="laboratories-inactive-aux"></div>
+</section>
