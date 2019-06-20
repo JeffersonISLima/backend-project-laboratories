@@ -1,5 +1,9 @@
-{{#if msg}}
-  <h1 class="msg">{{msg}}</h1>
+{{#if msgSuccess}}
+  <h1 class="message-success">{{msgSuccess}}</h1>
+{{/if}}
+
+{{#if msgFailure}}
+  <h1 class="message-failure">{{msgFailure}}</h1>
 {{/if}}
 
 <h1>Lista de laboratórios cadastrados</h1>

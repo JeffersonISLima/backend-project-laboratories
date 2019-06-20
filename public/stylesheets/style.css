@@ -3,7 +3,7 @@
   border: 2px solid red;
 }
 
-/* Navbar title */
+/* Navbar title  - View: Layout */
 .container-navbar {
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
   height: 70px;
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu - View: Layout */
 .menu {
   background-color: purple;
   width: 60px;
@@ -114,7 +114,7 @@
   transition: 0.9s ease-in-out;  
 }
 
-/* Cards */
+/* Cards - Views: Index | Exams  */
 img {
   max-width: 100%;
 }
@@ -200,9 +200,56 @@ img {
   100% { transform: translateY(0) scale(1.0); opacity: 1; filter: blur(0); }
 }
 
-/* Message sucsses or not */ 
-.msg {
-  color: rgb(243, 47, 33);
-  text-align: center
+/* Message of success or failure - position at the bottom and in the middle of the screen */ 
+.message-success, .message-failure {
+  visibility: hidden; 
+  min-width: 250px;  
+  background-color: darkgreen; 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 12px;
+  padding: 16px; 
+  position: fixed; 
+  z-index: 1; 
+  left: 50%; 
+  transform: translateX(-50%);
+  bottom: 30px;
+  -webkit-animation: fadein 1s, static-anime 8s .3s; 
+  animation: fadein 1s, static-anime 10s .3s;  
+  border: 2px solid forestgreen;
 }
+
+.message-failure {
+  background-color: darkred !important; 
+  border: 2px solid rgb(87, 29, 13) !important;
+}
+
+/* Animations to fade the snackbar in and out */
+ @-webkit-keyframes fadein {
+  0% { bottom: 0; opacity: 0; visibility: visible; }
+100% { bottom: 30px; opacity: 1; visibility: visible; }
+} 
+
+@keyframes fadein {
+  0% { bottom: 0; opacity: 0; visibility: visible; }
+100% { bottom: 30px; opacity: 0; visibility: visible; }
+}
+
+@-webkit-keyframes static-anime {
+  0%   { opacity: 0; visibility: visible; }
+  10%  { opacity: 0.8; visibility: visible; }
+  30%  { opacity: 1; visibility: visible; }
+  100% { opacity: 1; visibility: visible; }
+}
+
+@keyframes static-anime {
+  0%   { opacity: 0; visibility: visible; }
+  10%  { opacity: 0.8; visibility: visible; }
+  30%  { opacity: 1; visibility: visible; }
+  100% { opacity: 1; visibility: visible; }
+}
+
+
+/* Other css */
+
 

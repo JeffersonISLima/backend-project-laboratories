@@ -27,7 +27,7 @@ router.post('/new-lab', (req, res, next) => {
     })
     .then((register) => {
       if (register !== null) {
-        res.redirect(`/laboratories/list-lab/?msg=Já existe um laboratório neste endereço, o cadastro do laboratório "${ register.name }" não foi realizado.`);
+        res.redirect(`/laboratories/list-lab/?msgFailure=Já existe um laboratório neste endereço, o cadastro do laboratório "${ register.name }" não foi realizado.`);
         return;
       } else {
         const newLaboratory = new Laboratory({
@@ -38,7 +38,7 @@ router.post('/new-lab', (req, res, next) => {
         });
         newLaboratory.save()
           .then((laboratory) => {
-            res.redirect(`/laboratories/list-lab/?msg=Laboratório "${ laboratory.name }" cadastrado com sucesso!`);
+            res.redirect(`/laboratories/list-lab/?msgSuccess=Laboratório "${ laboratory.name }" cadastrado com sucesso!`);
           })
           .catch((error) => {
             console.log(error);
@@ -56,7 +56,8 @@ router.get('/list-lab', (req, res, next) => {
     .then(listLabs => {
       res.render('../views/laboratory/list-lab', {
         laboratories: listLabs,
-        msg: req.query.msg,
+        msgFailure: req.query.msgFailure,
+        msgSuccess: req.query.msgSuccess
       });
     })
     .catch(error => {
@@ -108,7 +109,7 @@ router.get('/details/:id', (req, res, next) => {
 router.get('/delete/:id', (req, res, next) => {
   Laboratory.findByIdAndDelete(req.params.id)
     .then((lab) => {
-      res.redirect(`/laboratories/list-lab/?msg=Laboratório "${ lab.name }" deletado com sucesso!`);
+      res.redirect(`/laboratories/list-lab/?msgSuccess=Laboratório "${ lab.name }" deletado com sucesso!`);
     })
     .catch(error => {
       throw new Error(error); 
