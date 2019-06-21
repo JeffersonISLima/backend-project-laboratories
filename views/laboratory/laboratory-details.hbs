@@ -1,12 +1,35 @@
-<h1>Registro do laboratório</h1>
-<h1>Nome do laboratório: {{laboratory.name}}</h1>
-<h2>Endereço: {{laboratory.address}}</h2>
-{{#if laboratory.status}}
-  <h2>Status: {{laboratory.status}}</h2>
-{{else}}
-  <h2>Status: Inativo</h2>
-{{/if}}
-<h2>Exames vinculados: {{laboratory.exams}}</h2><br>
-
-<a href="/laboratories/edit-lab/{{laboratory._id}}"><button>Atualizar</button></a>
-<a href="/laboratories/delete/{{laboratory._id}}"><button>Deletar</button></a>
+<section class="card-detail-container">
+  <div class="card-details">
+    <h1>Infomações do laboratório</h1>
+    <hr>
+    <h2>Nome: {{laboratory.name}}</h2>
+    <h2>Endereço: {{laboratory.address}}</h2>
+    {{#if laboratory.status}}
+      <h2>Status: <span class="txt-active">{{laboratory.status}}</span></h2>
+      {{else}}
+        <h2>Status: <span class="txt-inactive">Inativo</span></h2>
+    {{/if}}
+    <div id="exams-associated">
+      <h2>Exames realizados no laboratório</h2> <br>
+      <div class="row-laboratory-details">
+        <div class="column">
+          <h2>ANÁLISE CLÍNICA</h2>
+          {{#each analyze}}
+            <p class="list-layout">{{this}}</p>
+          {{/each}}
+        </div>
+        <div class="column">
+          <h2>IMAGENS</h2>
+          {{#each images}}
+            <p class="list-layout">{{this}}</p>
+          {{/each}}
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="button-container">
+      <a href="/laboratories/edit-lab/{{laboratory.id}}"><button class="button"><span>Atualizar</span></button></a>
+      <a href="/laboratories/delete/{{laboratory.id}}"><button class="button delete"><span>Deletar</span></button></a>
+    </div>
+  </div>
+</section>

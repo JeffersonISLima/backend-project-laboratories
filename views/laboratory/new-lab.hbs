@@ -19,6 +19,7 @@
       {{#if this.status}}
         <label for="exams">{{this.name}}</label>
         <input value="{{this.name}}" type="checkbox" id="exams" name="exams" checked>
+        <input value="{{this.type}}" type="hidden" name="exams" checked>
         <br>
       {{/if}}
     {{/each}}  

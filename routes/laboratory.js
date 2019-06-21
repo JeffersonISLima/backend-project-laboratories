@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Laboratory = require('../models/Laboratory.js');
 const Exam = require('../models/Exam.js');
+const Association = require('../models/Association.js');
 
 /* Register a new laboratory */
 router.get('/new-lab', (req, res, next) => {
   Exam.find()
-  .then((exams) => {
+  .then((exams) => {    
     res.render('../views/laboratory/new-lab', { exams: exams });
   })
   .catch((error) => {
@@ -96,8 +97,25 @@ router.get('/details/:id', (req, res, next) => {
       '_id': req.params.id
     })
     .then( (theLab) => {
+      let images = [];
+      let analyze = [];
+      let elementArrayAux = '';
+      
+      theLab.exams.map((laboratory, idx) => {
+       if(idx % 2 === 0) elementArrayAux = laboratory;   
+
+        if(idx % 2 !== 0){
+          if(laboratory === 'Imagem'){            
+            images.push(elementArrayAux);
+          }else{
+            analyze.push(elementArrayAux);
+          }
+        }
+      });      
       res.render('../views/laboratory/laboratory-details', {
-        laboratory: theLab
+        laboratory: theLab,
+        images,
+        analyze
       });
     })
     .catch(error => {

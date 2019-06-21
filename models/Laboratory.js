@@ -5,7 +5,7 @@ const laboratorySchema = new Schema({
   name: String,
   address: String,
   status: String,
-  exams: Array  
+  exams: Array,
 }, {
   timestamps: {
     createdAt: "created_at",
