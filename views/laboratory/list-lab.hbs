@@ -28,7 +28,7 @@
     <br>
     {{#each laboratories}}
       {{#unless this.status}}
-        <a href="/laboratories/details/{{this._id}}">
+        <a href="/laboratories/details/{{this.id}}">
           <p class="list-layout">{{this.name}}</p>
         </a>
       {{/unless}}

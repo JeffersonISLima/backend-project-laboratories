@@ -8,31 +8,35 @@
   <title>Manutenção de laboratórios e exames</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="/stylesheets/reset.css">
-  <script src="/javascripts/script.js"></script>
 </head>
 
 <body>
-  <header class="header">
-    <nav class="container-navbar">    
-      <h1>Laboratórios e Exames</h1>
-      <input id="menu__hamburguer" type="checkbox" />
-      <ul class="navbar"> 
-        <li><a href="/">LABORATÓRIOS</a></li>
-        <li><a href="/exams">EXAMES</a></li>
-      </ul>
+  <section class="teste">
 
-      <label for="menu__hamburguer">
-        <div class="menu">
-          <span class="hamburguer"></span>
-        </div>
-      </label>    
-    </nav>
-  </header>
 
-  <section class="body">
-    {{{body}}}
+    <header class="header">
+      <nav class="container-navbar">
+        <h1>Laboratórios e Exames</h1>
+        <input id="menu__hamburguer" type="checkbox" />
+        <ul class="navbar">
+          <li><a href="/">LABORATÓRIOS</a></li>
+          <li><a href="/exams">EXAMES</a></li>
+        </ul>
+
+        <label for="menu__hamburguer">
+          <div class="menu">
+            <span class="hamburguer"></span>
+          </div>
+        </label>
+      </nav>
+    </header>
+
+    <section>
+      {{{body}}}
+    </section>
+
   </section>
-   
+  <script src="/javascripts/script.js"></script>
 </body>
 
 </html>

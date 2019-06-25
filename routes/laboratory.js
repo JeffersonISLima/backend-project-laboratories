@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Laboratory = require('../models/Laboratory.js');
 const Exam = require('../models/Exam.js');
-const Association = require('../models/Association.js');
 
 /* Register a new laboratory */
 router.get('/new-lab', (req, res, next) => {
@@ -53,8 +52,8 @@ router.post('/new-lab', (req, res, next) => {
 
 /* List all laboratories */
 router.get('/list-lab', (req, res, next) => {
-  Laboratory.find()
-    .then(listLabs => {
+  Laboratory.find().populate('id_exam')
+    .then((listLabs) => {
       res.render('../views/laboratory/list-lab', {
         laboratories: listLabs,
         msgFailure: req.query.msgFailure,
@@ -71,19 +70,48 @@ router.get('/edit-lab/:id', (req, res, next) => {
   Laboratory.findOne({  
     '_id': req.params.id
   })
-  .then(theLab => {       
-    res.render('../views/laboratory/edit-lab', {
-      laboratory: theLab
+  .then((theLab) => { 
+    Exam.find()
+    .then((theExams) => {
+      let images = [];
+      let analyzes = [];
+  
+      theExams.map((exam, idx) => {
+        if(exam.type === 'Imagem' && exam.status === 'Ativo'){
+          images.push(exam);
+        }else if(exam.type === 'Análise Clínica' && exam.status === 'Ativo'){
+          analyzes.push(exam);
+        }         
+      });      
+      
+     // console.log("THE EXAMSSS", theExams);
+      
+     // console.log("ESTE É O ARRAY DE IMAGENS", images);
+      //console.log("ESTE É O ARRAY DE ANALISES", analyzes); 
+      
+      res.render('../views/laboratory/edit-lab', {
+        laboratory: theLab,
+        theExams: theExams, 
+        images,
+        analyzes,
+      });
+    })
+    .catch(error => {
+      console.log("Erro ao recuperar detalhes de um laboratório para edição: ", error);
     });
-  })
-  .catch(error => {
-    console.log("Erro ao recuperar detalhes de um laboratório para edição: ", error);
-  });
+
+    })
+    .catch((error) => {
+      throw new Error(error);
+    })  
 });
 
 router.post('/edit-lab/:id', (req, res, next) => {
   Laboratory.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(lab => {
+      console.log("######### poooooosTTTTTT", lab);   
+
+
       res.redirect(`/?msg=Laboratório "${ lab.name }" atualizado com sucesso!`);
     })
     .catch(error => {
@@ -98,24 +126,67 @@ router.get('/details/:id', (req, res, next) => {
     })
     .then( (theLab) => {
       let images = [];
-      let analyze = [];
+      let analyzes = [];
       let elementArrayAux = '';
       
-      theLab.exams.map((laboratory, idx) => {
-       if(idx % 2 === 0) elementArrayAux = laboratory;   
+      theLab.exams.map((exam, idx) => {
+        if(exam !== 'Análise Clínica' && exam !== 'Imagem' && exam !== '') {          
+          elementArrayAux = exam; 
+        //  console.log("!!!!!!!!!!!!!!!!!!@@@@ auxiliar", elementArrayAux);
+        }       
+          
+          if(exam === 'Análise Clínica') {
+            console.log("Análise Clínica PUSHHH", exam);
+            console.log("Análise Clínica PUSHHH", elementArrayAux);
 
-        if(idx % 2 !== 0){
-          if(laboratory === 'Imagem'){            
-            images.push(elementArrayAux);
-          }else{
-            analyze.push(elementArrayAux);
-          }
-        }
-      });      
+              return analyzes.push(elementArrayAux);
+           }
+
+// CONTINUAR AKIIIIII FAZER DOIS ARRAYS SEPARADOS, UM PARA ANALISES E OUTRO PARA IMAGES
+           
+          if(exam === 'Imagem'){    
+            console.log("IMAGEMMM PUSH", exam);             
+            console.log("IMAGEMMM PUSH", elementArrayAux);                
+           
+              images.push(elementArrayAux);                  
+         
+          } 
+
+       /* if( exam !== 'Análise Clínica' ){
+          elementImage = exam;
+       }
+       if( exam !== 'Imagem'  ) elementAnalyze = exam;  
+ */
+     // console.log('%%%%%%%%%%%%%%%%55', elementArrayAux);
+
+
+      //  if(idx % 2 !== 0){
+         /*  if(exam === 'Imagem'){            
+           return images.push(elementImage);
+          }else if(exam === 'Análise Clínica') {
+           return analyzes.push(elementAnalyze);
+          } */
+       // }
+      });     
+
+      console.log('%%%%%%%%%%%%%%%%55', theLab); 
+
+
+      
+
+      const filteredAnalyzes = analyzes.filter((exam, idx) => analyzes.indexOf(exam)  === idx);
+      const filteredImages = images.filter((exam, idx) => images.indexOf(exam) === idx);
+      
+
+
+      console.log('IMAGES!!!!!!', filteredImages);
+      console.log('ANALYZES!!!!!!!', filteredAnalyzes);
+      
+      
       res.render('../views/laboratory/laboratory-details', {
         laboratory: theLab,
-        images,
-        analyze
+        filteredImages,
+        filteredAnalyzes
       });
     })
     .catch(error => {

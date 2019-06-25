@@ -1,6 +1,6 @@
 <section class="card-detail-container">
   <div class="card-details">
-    <h1>Infomações do laboratório</h1>
+    <h1>Informações do laboratório</h1>
     <hr>
     <h2>Nome: {{laboratory.name}}</h2>
     <h2>Endereço: {{laboratory.address}}</h2>
@@ -14,13 +14,13 @@
       <div class="row-laboratory-details">
         <div class="column">
           <h2>ANÁLISE CLÍNICA</h2>
-          {{#each analyze}}
+          {{#each filteredAnalyzes}}
             <p class="list-layout">{{this}}</p>
           {{/each}}
         </div>
         <div class="column">
           <h2>IMAGENS</h2>
-          {{#each images}}
+          {{#each filteredImages}}
             <p class="list-layout">{{this}}</p>
           {{/each}}
         </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="button-container">
       <a href="/laboratories/edit-lab/{{laboratory.id}}"><button class="button"><span>Atualizar</span></button></a>
-      <a href="/laboratories/delete/{{laboratory.id}}"><button class="button delete"><span>Deletar</span></button></a>
+      <a href="/laboratories/delete/{{laboratory.id}}"><button class="button button-delete"><span>Deletar</span></button></a>
     </div>
   </div>
 </section>

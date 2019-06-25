@@ -12,6 +12,7 @@
   background-color: purple;
   color: white;
   height: 70px;
+  font-size: 25px;
 }
 
 /* Hamburger Menu - View: Layout */
@@ -161,14 +162,14 @@ img {
 
 .card__title {  
   color: white;
-  margin-top: 0;
+  margin-top: 70px;
   font-weight: 800;
   letter-spacing: 0.01em;
 }
 
 .card__title-arrow {
   position: absolute;
-  left: 95%;
+  left: 94%;
   top: 25%;
 }
 
@@ -221,6 +222,7 @@ img {
   -webkit-animation: fadein 1s, static-anime 8s .3s; 
   animation: fadein 1s, static-anime 10s .3s;  
   border: 2px solid forestgreen;
+  font-size: 25px;
 }
 
 .message-failure {
@@ -280,6 +282,7 @@ img {
   display: flex;
   justify-content: center; 
   padding-top: 15px;
+  font-size: 25px;
 }
 
 .list-layout {
@@ -306,21 +309,18 @@ img {
 }
 
 /* Card  details about one laboratory or exam. Views: exam-details | laboratory-details */
-.card-detail-container {
-  position: relative;
+.card-detail-container {   
+  display: flex;
+  justify-content: center;
 }
 
 .card-details {
   border: 1px solid rgb(131, 131, 131);
-  width: 80%;
-  position: absolute;
-  left: 50%;
-  top: 45vh;
-  transform: translate(-50%, -50%);
+  width: 80%; 
   padding: 20px;
   box-shadow: 1px 1px 100px rgba(71, 1, 66, 0.65);   
   font-size: 18px;
-  margin-top: 20px;
+  margin-top: 30px;  
 }
 
 .txt-active {
@@ -334,7 +334,7 @@ img {
 hr {
   width: 40%;
   margin-left: 30%;
-  background-color: rgb(56, 0, 56); 
+  border-color: rgb(143, 9, 143);   
 }
 
 .card-details > h1 {
@@ -365,7 +365,7 @@ hr {
   height: 55px;
 }
 
-.delete {
+.button-delete {
   background-color: darkred !important;
 }
 
@@ -398,7 +398,120 @@ hr {
   right: 0;
 }
 
-/* Other CSS */
+/* Update the informations about one laboratory. Views: edit-lab | edit-exam */
+.edit-lab-title {
+  font-size: 25px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.column-aux-edit {
+  width: 20%;
+  float: left;
+  border: 1px solid white;
+  visibility: hidden;
+}
+
+.column-main-edit {
+  width: 60%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 100px rgba(71, 1, 66, 0.65);  
+}
+
+.input-edit-lab {
+  padding-top: 30px;
+}
+
+input[type=text], select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-left: 10%;
+  font-size: 18px;
+}
+
+.label-inputs {
+  margin-left: 10%;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.column-aux-edit-lab {
+  float: left;
+  width: 10%;
+  border: 1px solid white;
+  visibility: hidden;
+}
+
+.column-main-edit-lab {
+  float: left;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.h2-title-1 {
+ width: 100%;
+ padding-left: 15%;
+ margin-bottom: 15px; 
+}
+
+.h2-title-2 {
+  width: 100%;
+  padding-left: 35%;
+  margin-bottom: 15px; 
+}
+
+.list-layout-edit {
+  width: 80%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-left: 10%;
+  margin-top: -2px;
+  border: 1px solid #ccc;
+  padding: 5%;
+  background-color: #fff;
+}
+
+.list-layout-edit:hover {
+  transform: scale(1.05);
+  transition: all .8s;
+  background-color: rgb(255, 180, 224);
+  font-weight: bold;
+}
+
+/* Create a custom checkbox */
+.checkmark {  
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+#button-edit-lab-submit {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

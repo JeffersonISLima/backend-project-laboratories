@@ -1,33 +1,104 @@
-<h1>Atualizar laboratório</h1>
+<header class="edit-lab-title">
+  <h1>Atualizar laboratório</h1>
+</header>
 
-<form action="/laboratories/edit-lab/{{laboratory._id}}" method="post">
-  <label for="">Nome do laboratório:</label>
-  <input placeholder="{{laboratory.name}}" type="text" name="name" required>
+<section class="row">
+  <div class="column-aux-edit"></div>
 
-  <label for="">Endereço:</label>
-  <input placeholder="{{laboratory.address}}" type="text" name="address" required>
+  <div class="column-main-edit">
+    <form action="/laboratories/edit-lab/{{laboratory.id}}" method="post">
+      <div class="input-edit-lab">
+        <label class="label-inputs" for="">Nome do laboratório: {{laboratory.name}}</label>
+        <input placeholder="Nome..." type="text" name="name" value="{{laboratory.name}}">
 
-  <select name="status" class="" required>
-    <option value="" disabled selected>Escolha o status</option>
-    <option value="Ativo">Ativo</option>
-    <option value="">Inativo</option>
-  </select>
+        <label class="label-inputs" for="">Endereço: {{laboratory.address}}</label>
+        <input placeholder="Endereço..." type="text" name="address" value="{{laboratory.address}}">
+        
+        {{#if laboratory.status}}
+          <label class="label-inputs" for="">Status atual: <span class="txt-active">{{laboratory.status}}</span></label>  
+          {{else}}
+            <label class="label-inputs" for="">Status atual: <span class="txt-inactive">Inativo</span></label>  
+        {{/if}}       
 
-  <h2>Vincular / Desvincular exames do laboratório: </h2>
+        <select name="status" required>
+          <option value="" disabled selected>Escolha o status</option>
+          <option value="Ativo">Ativo</option>
+          <option value="">Inativo</option>
+        </select>
+      </div>
 
-  {{!-- COLOCAR PARA VINCULAR OS EXAMES, RENDERIZAR A LISTA DE EXAMES DISPONIVEL NO BANCO --}}
+      <h2 class="edit-lab-title">Vincular / Desvincular exames do laboratório: </h2>
 
-  <div>
-    {{#each laboratory.exams}}   
-      <ul>
-        <li>
-        <label for="exams"> {{@index}} - {{this}}</label>
-        <input value="{{this}}" type="checkbox" id="exams" name="exams" checked>
-        </li>
-      </ul>
-    
-    {{/each}}  
+      {{!--  <div>
+        {{#each laboratory.exams}}
+        <ul>
+          <li>
+            <label for="exams"> {{@index}} - {{this}}</label>
+            <input value="{{this}}" type="checkbox" id="exams" name="exams" checked>
+          </li>
+        </ul>
+        {{/each}}
+      </div> --}}
+
+      <section class="row">
+        <div class="column-aux-edit-lab"></div>
+
+        <div class="column-main-edit-lab">
+          <div class="h2-title-1">
+            <h2>ANÁLISE CLÍNICA</h2>
+          </div>
+          <div>
+            {{#each analyzes}}
+            <ul>
+              <li class="list-layout-edit">
+                <label for="exams1">{{this.name}}</label>
+                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams1" name="exams" onClick='tete()' checked />
+                <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
+              </li>
+            </ul>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="column-main-edit-lab">
+          <div class="h2-title-2">
+            <h2>IMAGENS</h2>
+          </div>
+          <div>
+            {{#each images}}
+            <ul>
+              <li class="list-layout-edit">
+                <label for="exams2">{{this.name}}</label>
+                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams2" name="exams" onClick='tete()' checked />
+                <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
+              </li>
+            </ul>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="column-aux-edit-lab"></div>
+      </section>
+      <br>
+      <div id="button-edit-lab-submit" class="button-container">
+        <button id="myBtn" class="button" type="submit"><span>Salvar</span></button>
+      </div>
+
+
+      {{!-- <br>
+      aki {{laboratory.exams}}
+      aki {{theExams}}
+
+
+      {{#each theExams}}
+        {{#if this.status}}
+          <label for="exams"> {{@index}} - {{this.name}}</label>
+          <input value="{{this.name}}" type="checkbox" id="exams" name="exams" checked>
+          <input value="{{this.type}}" type="hidden" id="exams" name="exams" checked>
+        {{/if}}
+      {{/each}} --}}
+    </form>
   </div>
 
-  <button type="submit">Salvar</button>
-</form>
+  <div class="column-aux-edit border"></div>
+</section>

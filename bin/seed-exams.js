@@ -16,7 +16,7 @@ const exams = [
     status: "",
   },
   {
-    name: "Radiografias",
+    name: "Radiografia",
     type: "Imagem",
     status: "Ativo",
   },
