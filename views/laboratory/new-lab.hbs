@@ -1,4 +1,101 @@
-<h1>Cadastrar laboratório</h1>
+<header class="edit-lab-title">
+  <h1>Cadastrar laboratório</h1>
+</header>
+
+<section class="row">
+  <div class="column-aux-edit"></div>
+
+  <div class="column-main-edit">
+    <form action="/laboratories/new-lab" method="post">
+      <div class="input-edit-lab">
+        <label class="label-inputs" for="">Nome do laboratório: {{laboratory.name}}</label>
+        <input placeholder="Nome..." type="text" name="name" required />
+
+        <label class="label-inputs" for="">Endereço:</label>
+        <input placeholder="Endereço..." type="text" name="address" required />
+        
+        <select name="status" required>
+          <option value="" disabled selected>Escolha o status</option>
+          <option value="Ativo">Ativo</option>
+          <option value="">Inativo</option>
+        </select>
+      </div>
+
+      <h2 class="edit-lab-title">Vincular os exames ativos cadastrados no banco com o laboratório: </h2>
+
+      <section class="row">       
+
+        <div class="column-main-edit-lab">
+          <div class="h2-title-1">
+            <h2>ANÁLISE CLÍNICA</h2>
+          </div>
+
+          <div>
+            {{#each analyzes}}
+              {{#if this.status}}
+                <ul>
+                  <li class="list-layout-edit">
+                  <label for="exams1">{{this.name}}</label>
+                  <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams1" name="exams" checked />
+                  <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
+                  </li>
+                </ul>
+              {{/if}}
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="column-main-edit-lab">
+          <div class="h2-title-2">
+            <h2>IMAGENS</h2>
+          </div>
+          <div>
+            {{#each images}}
+              {{#if this.status}}
+                <ul>
+                  <li class="list-layout-edit">
+                  <label for="exams2">{{this.name}}</label>
+                  <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams2" name="exams" checked />
+                  <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
+                  </li>
+                </ul>
+              {{/if}}
+            {{/each}}
+          </div>
+        </div>
+               
+      </section>
+      <br>
+      <div id="button-edit-lab-submit" class="button-container">
+        <button id="myBtn" class="button" type="submit"><span>Salvar</span></button>
+      </div>
+      
+    </form>
+  </div>
+
+  <div class="column-aux-edit border"></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- ORIGINAL --}}
+
+{{!-- <h1>Cadastrar laboratório</h1>
 
 <form action="/laboratories/new-lab" method="post">
   <label for="">Nome do laboratório:</label>
@@ -26,4 +123,4 @@
   </div>
 
   <button type="submit">Salvar</button>
-</form>
+</form> --}}

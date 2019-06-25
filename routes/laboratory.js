@@ -7,7 +7,20 @@ const Exam = require('../models/Exam.js');
 router.get('/new-lab', (req, res, next) => {
   Exam.find()
   .then((exams) => {    
-    res.render('../views/laboratory/new-lab', { exams: exams });
+    let images = [];
+    let analyzes = [];
+
+    exams.map((element) => {
+      if(element.type === 'Imagem') {
+        images.push(element);
+      }else {
+        analyzes.push(element);
+      }
+    });
+    res.render('../views/laboratory/new-lab', { 
+      images: images,
+      analyzes: analyzes
+     });
   })
   .catch((error) => {
     throw new Error(error);
@@ -27,7 +40,7 @@ router.post('/new-lab', (req, res, next) => {
     })
     .then((register) => {
       if (register !== null) {
-        res.redirect(`/laboratories/list-lab/?msgFailure=Já existe um laboratório neste endereço, o cadastro do laboratório "${ register.name }" não foi realizado.`);
+        res.redirect(`/laboratories/list-lab/?msgFailure=Cadastro não realizado, o laboratório "${ register.name }" consta no endereço informado.`);
         return;
       } else {
         const newLaboratory = new Laboratory({
