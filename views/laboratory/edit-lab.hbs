@@ -29,19 +29,7 @@
 
       <h2 class="edit-lab-title">Vincular / Desvincular exames do laboratório: </h2>
 
-      {{!--  <div>
-        {{#each laboratory.exams}}
-        <ul>
-          <li>
-            <label for="exams"> {{@index}} - {{this}}</label>
-            <input value="{{this}}" type="checkbox" id="exams" name="exams" checked>
-          </li>
-        </ul>
-        {{/each}}
-      </div> --}}
-
-      <section class="row">
-        <div class="column-aux-edit-lab"></div>
+      <section class="row">       
 
         <div class="column-main-edit-lab">
           <div class="h2-title-1">
@@ -52,7 +40,7 @@
             <ul>
               <li class="list-layout-edit">
                 <label for="exams1">{{this.name}}</label>
-                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams1" name="exams" onClick='tete()' checked />
+                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams1" name="exams" checked />
                 <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
               </li>
             </ul>
@@ -69,34 +57,20 @@
             <ul>
               <li class="list-layout-edit">
                 <label for="exams2">{{this.name}}</label>
-                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams2" name="exams" onClick='tete()' checked />
+                <input class="checkmark" value="{{this.name}}" type="checkbox" id="exams2" name="exams" checked />
                 <input value="{{this.type}}" type="hidden" name="exams" id="input-hidden" />
               </li>
             </ul>
             {{/each}}
           </div>
         </div>
-
-        <div class="column-aux-edit-lab"></div>
+               
       </section>
       <br>
       <div id="button-edit-lab-submit" class="button-container">
         <button id="myBtn" class="button" type="submit"><span>Salvar</span></button>
       </div>
-
-
-      {{!-- <br>
-      aki {{laboratory.exams}}
-      aki {{theExams}}
-
-
-      {{#each theExams}}
-        {{#if this.status}}
-          <label for="exams"> {{@index}} - {{this.name}}</label>
-          <input value="{{this.name}}" type="checkbox" id="exams" name="exams" checked>
-          <input value="{{this.type}}" type="hidden" id="exams" name="exams" checked>
-        {{/if}}
-      {{/each}} --}}
+      
     </form>
   </div>
 

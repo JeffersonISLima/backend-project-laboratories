@@ -15,13 +15,17 @@
         <div class="column">
           <h2>ANÁLISE CLÍNICA</h2>
           {{#each filteredAnalyzes}}
-            <p class="list-layout">{{this}}</p>
+            {{#if this}}
+              <p class="list-layout">{{this}}</p>
+            {{/if}}
           {{/each}}
         </div>
         <div class="column">
           <h2>IMAGENS</h2>
           {{#each filteredImages}}
-            <p class="list-layout">{{this}}</p>
+            {{#if this}}
+              <p class="list-layout">{{this}}</p>
+            {{/if}}
           {{/each}}
         </div>
       </div>

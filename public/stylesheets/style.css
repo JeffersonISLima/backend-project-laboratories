@@ -442,16 +442,9 @@ input[type=text], select {
   font-weight: 800;
 }
 
-.column-aux-edit-lab {
-  float: left;
-  width: 10%;
-  border: 1px solid white;
-  visibility: hidden;
-}
-
 .column-main-edit-lab {
   float: left;
-  width: 40%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   font-size: 20px;
@@ -459,23 +452,26 @@ input[type=text], select {
 
 .h2-title-1 {
  width: 100%;
- padding-left: 15%;
+ padding-left: 9%;
  margin-bottom: 15px; 
+ font-size: 18px;
 }
 
 .h2-title-2 {
   width: 100%;
-  padding-left: 35%;
+  padding-left: 27%;
   margin-bottom: 15px; 
+  font-size: 18px;
 }
 
 .list-layout-edit {
-  width: 80%;
+  width: 95%;
   height: 50px;
   display: flex;
   justify-content: space-between;
   align-items:center;
-  margin-left: 10%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: -2px;
   border: 1px solid #ccc;
   padding: 5%;

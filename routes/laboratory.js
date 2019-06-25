@@ -52,7 +52,7 @@ router.post('/new-lab', (req, res, next) => {
 
 /* List all laboratories */
 router.get('/list-lab', (req, res, next) => {
-  Laboratory.find().populate('id_exam')
+  Laboratory.find()
     .then((listLabs) => {
       res.render('../views/laboratory/list-lab', {
         laboratories: listLabs,
@@ -60,7 +60,7 @@ router.get('/list-lab', (req, res, next) => {
         msgSuccess: req.query.msgSuccess
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log('Erro ao recuperar laboratórios: ', error);
     })
 });
@@ -70,36 +70,30 @@ router.get('/edit-lab/:id', (req, res, next) => {
   Laboratory.findOne({  
     '_id': req.params.id
   })
-  .then((theLab) => { 
-    Exam.find()
-    .then((theExams) => {
-      let images = [];
-      let analyzes = [];
+    .then((theLab) => { 
+      Exam.find()
+      .then((theExams) => {
+        let images = [];
+        let analyzes = [];
   
-      theExams.map((exam, idx) => {
-        if(exam.type === 'Imagem' && exam.status === 'Ativo'){
-          images.push(exam);
-        }else if(exam.type === 'Análise Clínica' && exam.status === 'Ativo'){
-          analyzes.push(exam);
-        }         
-      });      
-      
-     // console.log("THE EXAMSSS", theExams);
-      
-     // console.log("ESTE É O ARRAY DE IMAGENS", images);
-      //console.log("ESTE É O ARRAY DE ANALISES", analyzes); 
-      
-      res.render('../views/laboratory/edit-lab', {
-        laboratory: theLab,
-        theExams: theExams, 
-        images,
-        analyzes,
-      });
-    })
-    .catch(error => {
-      console.log("Erro ao recuperar detalhes de um laboratório para edição: ", error);
-    });
+        theExams.map((exam) => {
+          if(exam.type === 'Imagem' && exam.status === 'Ativo') {
+            images.push(exam);
+          }else if(exam.type === 'Análise Clínica' && exam.status === 'Ativo') {
+            analyzes.push(exam);
+          }         
+        });     
 
+        res.render('../views/laboratory/edit-lab', {
+          laboratory: theLab,
+          theExams: theExams, 
+          images,
+          analyzes,
+        });
+      })
+      .catch((error) => {
+        console.log("Erro ao recuperar detalhes de um laboratório para edição: ", error);
+      });
     })
     .catch((error) => {
       throw new Error(error);
@@ -108,13 +102,10 @@ router.get('/edit-lab/:id', (req, res, next) => {
 
 router.post('/edit-lab/:id', (req, res, next) => {
   Laboratory.findByIdAndUpdate(req.params.id, { $set: req.body })
-    .then(lab => {
-      console.log("######### poooooosTTTTTT", lab);   
-
-
+    .then((lab) => {
       res.redirect(`/?msg=Laboratório "${ lab.name }" atualizado com sucesso!`);
     })
-    .catch(error => {
+    .catch((error) => {
       throw new Error(error);
     });
 });
@@ -124,69 +115,34 @@ router.get('/details/:id', (req, res, next) => {
   Laboratory.findOne({
       '_id': req.params.id
     })
-    .then( (theLab) => {
+    .then((theLab) => {
       let images = [];
       let analyzes = [];
       let elementArrayAux = '';
       
-      theLab.exams.map((exam, idx) => {
+      theLab.exams.map((exam) => {
         if(exam !== 'Análise Clínica' && exam !== 'Imagem' && exam !== '') {          
           elementArrayAux = exam; 
-        //  console.log("!!!!!!!!!!!!!!!!!!@@@@ auxiliar", elementArrayAux);
-        }       
+        }     
           
-          if(exam === 'Análise Clínica') {
-            console.log("Análise Clínica PUSHHH", exam);
-            console.log("Análise Clínica PUSHHH", elementArrayAux);
+        if(exam === 'Análise Clínica') {
+          analyzes.push(elementArrayAux);       
+        }else if(exam === 'Imagem') {            
+          if(analyzes.includes(elementArrayAux)) {
+            elementArrayAux = ''; 
+          }else {           
+            images.push(elementArrayAux);                     
+           }         
+        }            
+      });
 
-              return analyzes.push(elementArrayAux);
-           }
-
-// CONTINUAR AKIIIIII FAZER DOIS ARRAYS SEPARADOS, UM PARA ANALISES E OUTRO PARA IMAGES
-           
-          if(exam === 'Imagem'){    
-            console.log("IMAGEMMM PUSH", exam);             
-            console.log("IMAGEMMM PUSH", elementArrayAux);                
-           
-              images.push(elementArrayAux);                  
-         
-          } 
-
-       /* if( exam !== 'Análise Clínica' ){
-          elementImage = exam;
-       }
-       if( exam !== 'Imagem'  ) elementAnalyze = exam;  
- */
-     // console.log('%%%%%%%%%%%%%%%%55', elementArrayAux);
-
-
-      //  if(idx % 2 !== 0){
-         /*  if(exam === 'Imagem'){            
-           return images.push(elementImage);
-          }else if(exam === 'Análise Clínica') {
-           return analyzes.push(elementAnalyze);
-          } */
-       // }
-      });     
-
-      console.log('%%%%%%%%%%%%%%%%55', theLab); 
-
-
-      
-
-      const filteredAnalyzes = analyzes.filter((exam, idx) => analyzes.indexOf(exam)  === idx);
-      const filteredImages = images.filter((exam, idx) => images.indexOf(exam) === idx);
-      
-
-
-      console.log('IMAGES!!!!!!', filteredImages);
-      console.log('ANALYZES!!!!!!!', filteredAnalyzes);
-      
-      
-      res.render('../views/laboratory/laboratory-details', {
-        laboratory: theLab,
-        filteredImages,
-        filteredAnalyzes
+    const filteredAnalyzes = analyzes.filter((exam, idx) => analyzes.indexOf(exam)  === idx);
+    const filteredImages = images.filter((exam, idx) => images.indexOf(exam) === idx);      
+    
+    res.render('../views/laboratory/laboratory-details', {
+      laboratory: theLab,
+      filteredImages,
+      filteredAnalyzes
       });
     })
     .catch(error => {
@@ -200,7 +156,7 @@ router.get('/delete/:id', (req, res, next) => {
     .then((lab) => {
       res.redirect(`/laboratories/list-lab/?msgSuccess=Laboratório "${ lab.name }" deletado com sucesso!`);
     })
-    .catch(error => {
+    .catch((error) => {
       throw new Error(error); 
     });
 });
