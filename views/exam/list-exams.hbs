@@ -1,21 +1,43 @@
-{{#if msg}}
-  <h1>{{msg}}</h1>
-{{/if }}
+{{#if msgSuccess}}
+  <h1 class="message-success">{{msgSuccess}}</h1>
+{{/if}}
 
-<h2>Exames ativos</h2>
-{{# each exams}}
-  {{#if this.status}}
-    <p><a href="/exams/details/{{this.id}}">{{this.name}}</a></p>
-  {{/if}}
-  {{else}}
-     <p>No exams yet!</p>
-{{/each}}
+{{#if msgFailure}}
+  <h1 class="message-failure">{{msgFailure}}</h1>
+{{/if}}
 
-<h2>Exames inativos</h2>
-{{#each exams}}
-  {{#unless this.status}}
-    <p><a href="/exams/details/{{this.id}}">{{this.name}}</a></p>
-  {{/unless}}
-  {{else}}
-   <p>No exams yet!</p>
-{{/each}}
+<h1 class="list-layout-center-title">Lista de exames cadastrados</h1>
+
+<section class="row">
+  <div class="column-aux" name="exams-actives-aux"></div>
+
+  <div class="column" name="exams-actives">
+    <h2 class="list-layout-center-title">Exames ativos</h2>
+    <br>
+    {{#each exams}}
+      {{#if this.status}}
+        <a href="/exams/details/{{this.id}}">
+          <p class="list-layout">{{this.name}}</p>
+        </a>
+      {{/if}}
+        {{else}}
+          <p>No exams yet!</p>
+    {{/each}}
+  </div>
+
+  <div class="column" name="exams-inactives">
+    <h2 class="list-layout-center-title">Exames inativos</h2>
+    <br>
+    {{#each exams}}
+      {{#unless this.status}}
+        <a href="/exams/details/{{this.id}}">
+          <p class="list-layout">{{this.name}}</p>
+        </a>
+      {{/unless}}
+        {{else}}
+          <p>No exams yet!</p>
+    {{/each}}
+  </div>
+
+  <div class="column-aux" name="exams-inactive-aux"></div>
+</section>

@@ -16,14 +16,16 @@
     <br>
     {{#each laboratories}}
       {{#if this.status}}
-        <a href="/laboratories/details/{{this.id}}"><p class="list-layout">{{this.name}}</p></a>
+        <a href="/laboratories/details/{{this.id}}">
+          <p class="list-layout">{{this.name}}</p>
+        </a>
       {{/if}}
         {{else}}
           <p>No laboratories yet!</p>
     {{/each}}
   </div>
 
-  <div class="column" name="laboratories-inactive">
+  <div class="column" name="laboratories-inactives">
     <h2 class="list-layout-center-title">Laboratórios inativos</h2>
     <br>
     {{#each laboratories}}
