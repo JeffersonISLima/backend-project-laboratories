@@ -1,21 +1,38 @@
- <h1>Atualizar exame</h1>
+<header class="edit-lab-title">
+  <h1>Atualizar exame</h1>
+</header>
 
-<form action="/exams/edit-exam/{{exam.id}}" method="post">
-  <label for="">Nome do exame:</label>
-  <input placeholder="{{exam.name}}" type="text" name="name" required>
+<section class="row">
+  <div class="column-aux-edit"></div>
 
-  <select name="type" class="" required>
-    <option value="" disabled selected>Escolha o tipo de exame</option>
-    <option value="Analise">Analise Clínica</option>
-    <option value="Imagem">Imagem</option>
-  </select>
+  <div class="column-main-edit">
+    <form action="/exams/edit-exam/{{exam.id}}" method="post">
 
-  <select name="status" class="" required>
-    <option value="" disabled selected>Escolha o status</option>
-    <option value="Ativo">Ativo</option>
-    <option value="">Inativo</option>
-  </select>
+      <div class="input-edit-lab">
+        <label class="label-inputs" for="">Nome do exame: {{exam.name}}</label>
+        <input placeholder="Nome..." type="text" name="name" value="{{exam.name}}" />
 
-  <button type="submit">Salvar</button>
-</form>
+        <select name="type" class="" required>
+          <option value="" disabled selected>Escolha o tipo de exame</option>
+          <option value="Análise Clínica">Análise Clínica</option>
+          <option value="Imagem">Imagem</option>
+        </select>
 
+        <select name="status" required>
+          <option value="" disabled selected>Escolha o status</option>
+          <option value="Ativo">Ativo</option>
+          <option value="">Inativo</option>
+        </select>
+      </div>
+
+      <br>
+
+      <div id="button-edit-lab-submit" class="button-container">
+        <button class="button" type="submit"><span>Salvar</span></button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="column-aux-edit"></div>
+</section>

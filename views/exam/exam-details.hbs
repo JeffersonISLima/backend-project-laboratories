@@ -1,13 +1,19 @@
-<h1>Registro de exame</h1>
+<section class="card-detail-container">
+  <div class="card-details">
+    <h1>Registro de exame</h1>
+    <hr>
+    <h2>Nome: {{exam.name}}</h2>
+    <h2>Tipo: {{exam.type}}</h2>
 
-<h1>Nome do exame: {{exam.name}}</h1>
-
-<h2>Tipo: {{exam.type}}</h2>
-{{#if exam.status}}
-  <h2>Status: {{exam.status}}</h2>
-{{else}}
-  <h2>Status: Inativo</h2>
-{{/if}}
-
-<a href="/exams/edit-exam/{{exam.id}}"><button>Atualizar</button></a>
-<a href="/exams/delete/{{exam.id}}"><button>Deletar</button></a>
+    {{#if exam.status}}
+      <h2>Status: <span class="txt-active">{{exam.status}}</span></h2>
+      {{else}}
+        <h2>Status: <span class="txt-inactive">Inativo</span></h2>
+    {{/if}}
+   
+    <div class="button-container">
+      <a href="/exams/edit-exam/{{exam.id}}"><button class="button"><span>Atualizar</span></button></a>
+      <a href="/exams/delete/{{exam.id}}"><button class="button button-delete"><span>Deletar</span></button></a>
+    </div>
+  </div>
+</section>
