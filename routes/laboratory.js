@@ -174,4 +174,17 @@ router.get('/delete/:id', (req, res, next) => {
     });
 });
 
+/* Search laboratory from exam name - endpoint */
+router.get('/search-laboratory', (req, res, next) => {
+  Laboratory.find()
+    .then((allLabs) => {
+      res.render('../views/search-laboratory/search-lab', {
+        allLabs: allLabs,
+      });
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+});
+
 module.exports = router;

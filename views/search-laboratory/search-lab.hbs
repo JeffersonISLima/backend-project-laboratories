@@ -1,0 +1,28 @@
+<div class="row-search-container">
+  <div class="column-search-aux"></div>
+
+  <div class="column-search-main">
+    <h2>Digite um exame na pesquisa e encontre todos os laboratórios associados:</h2>
+    
+    <br>
+    
+    <span class="search-input-and-button-container">
+      <input type="search" id="search-lab" onkeyup="searchLaboratoryByExamName()" placeholder="Exame..." title="Type in a exam" />
+      <button class="button-search-lab">Exibir Exames Ativos</button>
+    </span>
+
+    <br>
+
+    <h1>Laboratórios cadastrados e ativos: </h1>
+
+    <ul id="menu__laboratories-list">
+      {{#each allLabs}}
+        {{#if this.status}}
+          <li><a href="/laboratories/details/{{this.id}}">{{this.name}}<span id="menu__laboratories-list-hidden-array-of-exams">{{this.exams}}</span></a></li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+  
+  <div class="column-search-aux"></div>   
+</div>
