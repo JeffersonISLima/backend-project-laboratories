@@ -51,7 +51,4 @@ app.use('/exams', exams);
 const laboratories = require('./routes/laboratory');
 app.use('/laboratories', laboratories);  
 
-
-
-
 module.exports = app;

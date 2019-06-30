@@ -4,7 +4,7 @@ const Exam = require('../models/Exam.js');
 
 /* Exam home */
 router.get('/', (req, res, next) => {
-  res.render('../views/exam/exams', { msg: req.query.msg });
+  res.render('../views/exam/exams', { msgSuccess: req.query.msgSuccess });
 })
 
 /* Register a new exam */
@@ -83,7 +83,7 @@ router.get('/edit-exam/:id', (req, res, next) => {
 router.post('/edit-exam/:id', (req, res, next) => {
   Exam.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then( (exam) => {
-      res.redirect(`/exams/list-exams/?msg=O exame "${ exam.name }" foi atualizado com sucesso!`);
+      res.redirect(`/exams/list-exams/?msgSuccess=Exame "${ exam.name }" atualizado com sucesso!`);
     })
     .catch( (error) => {
       throw new Error(error);
@@ -94,7 +94,7 @@ router.post('/edit-exam/:id', (req, res, next) => {
 router.get('/delete/:id',(req, res, next) => {
   Exam.findByIdAndDelete(req.params.id)
     .then( (exam) => {
-      res.redirect(`/exams/?msg=O exame ${ exam.name } foi deletado com sucesso!`);
+      res.redirect(`/exams/?msgSuccess=Exame ${ exam.name } deletado com sucesso!`);
     })
     .catch((error) => {
       throw new Error(error);

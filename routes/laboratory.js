@@ -116,7 +116,7 @@ router.get('/edit-lab/:id', (req, res, next) => {
 router.post('/edit-lab/:id', (req, res, next) => {
   Laboratory.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then((lab) => {
-      res.redirect(`/?msg=Laboratório "${ lab.name }" atualizado com sucesso!`);
+      res.redirect(`/?msgSuccess=Laboratório "${ lab.name }" atualizado com sucesso!`);
     })
     .catch((error) => {
       throw new Error(error);
@@ -178,8 +178,16 @@ router.get('/delete/:id', (req, res, next) => {
 router.get('/search-laboratory', (req, res, next) => {
   Laboratory.find()
     .then((allLabs) => {
-      res.render('../views/search-laboratory/search-lab', {
-        allLabs: allLabs,
+      Exam.find()
+        .then((allExams) => {          
+          allExams.sort().reverse(); // Send the exams array in alphabetical order to the view          
+          res.render('../views/search-laboratory/search-lab', {
+            allLabs: allLabs,
+            allExams: allExams
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });      
       });
     })
     .catch((error) => {

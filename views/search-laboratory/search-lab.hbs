@@ -1,4 +1,4 @@
-<div class="row-search-container">
+<section class="row-search-container">
   <div class="column-search-aux"></div>
 
   <div class="column-search-main">
@@ -7,13 +7,13 @@
     <br>
     
     <span class="search-input-and-button-container">
-      <input type="search" id="search-lab" onkeyup="searchLaboratoryByExamName()" placeholder="Exame..." title="Type in a exam" />
-      <button class="button-search-lab">Exibir Exames Ativos</button>
+      <input type="search" id="search-lab" onkeyup="searchLaboratoryByExamName()" placeholder="Exame..." title="Digite um exame" />
+      <button id="exams-btn-modal" class="button-search-lab" title="Pesquise um nome de exame na lista">Exibir Exames Ativos</button>
     </span>
 
     <br>
 
-    <h1>Laboratórios cadastrados e ativos: </h1>
+    <h1>Laboratórios cadastrados e com o status "Ativo": </h1>
 
     <ul id="menu__laboratories-list">
       {{#each allLabs}}
@@ -25,4 +25,29 @@
   </div>
   
   <div class="column-search-aux"></div>   
-</div>
+</section>
+
+<!-- The Modal -->
+<section id="exams-list-modal" class="modal">
+
+  <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Exames cadastrados com status ATIVO</h2>
+      </div>
+
+      <div class="modal-body">
+        {{#each allExams}}
+          {{#if this.status}} 
+            <p>{{this.name}}</p>
+          {{/if}}
+        {{/each}}        
+      </div>
+
+      <div class="modal-footer">
+        <h3>Laboratórios e Exames</h3>
+      </div>
+    </div>
+
+</section>
