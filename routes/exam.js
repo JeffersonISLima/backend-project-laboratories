@@ -94,7 +94,7 @@ router.post('/edit-exam/:id', (req, res, next) => {
 router.get('/delete/:id',(req, res, next) => {
   Exam.findByIdAndDelete(req.params.id)
     .then( (exam) => {
-      res.redirect(`/exams/?msgSuccess=Exame ${ exam.name } deletado com sucesso!`);
+      res.redirect(`/exams/?msgSuccess=Exame "${ exam.name }" deletado com sucesso!`);
     })
     .catch((error) => {
       throw new Error(error);
