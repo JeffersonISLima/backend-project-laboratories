@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Laboratory = require('../models/Laboratory');
 
-const dbName = 'backend-project';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+mongoose.connect(process.env.MONGODB_URI);
 
 const laboratories = [
   {
